@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Library Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Library Management System</h1>
+
+  <form id="addBookForm">
+    <h2>Add New Book</h2>
+    <label for="title">Book Title:</label>
+    <input type="text" id="title" name="title" required />
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required />
+
+    <label for="year">Year Published:</label>
+    <input type="number" id="year" name="year" min="1000" max="9999" required />
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn" required />
+
+    <button type="submit">Add Book</button>
+  </form>
+
+  <h2 style="text-align:center;">Library Books</h2>
+  <table id="booksTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>ISBN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Book entries go here -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('addBookForm');
+    const booksTableBody = document.querySelector('#booksTable tbody');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const title = form.title.value.trim();
+      const author = form.author.value.trim();
+      const year = form.year.value;
+      const isbn = form.isbn.value.trim();
+
+      if(title && author && year && isbn) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${title}</td>
+          <td>${author}</td>
+          <td>${year}</td>
+          <td>${isbn}</td>
+        `;
+        booksTableBody.appendChild(row);
+
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
